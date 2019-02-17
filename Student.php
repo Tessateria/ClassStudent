@@ -8,6 +8,42 @@ class Student
     protected $status;
     protected $gpa;
 
+    public function __construct(array $studentData)
+    {
+        if (empty($studentData['name'])) {
+            echo 'Wrong name' . PHP_EOL;
+        } else {
+            $this->name = $studentData['name'];
+        }
+
+        if (empty($studentData['surname'])) {
+            echo 'Wrong surname' . PHP_EOL;
+        } else {
+            $this->surname = $studentData['surname'];
+        }
+
+        if (!empty($studentData['sex'])) {
+            $this->setSex($studentData['sex']);
+        }
+
+        if (!empty($studentData['gpa'])) {
+            $this->setGpa($studentData['gpa']);
+        }
+
+        if (!empty($studentData['status'])) {
+            $this->setStatus($studentData['status']);
+        }
+    }
+
+    public function __toString()
+    {
+        return 'Name: ' . $this->name . PHP_EOL .
+            'Surname: ' . $this->surname . PHP_EOL .
+            'Sex: ' . $this->sex . PHP_EOL .
+            'Status: ' . $this->status . PHP_EOL .
+            'GPA: ' . $this->gpa . PHP_EOL;
+    }
+
     public function setSex(String $sex): Void
     {
         if (($sex === 'male') || ($sex === 'female')) {
@@ -42,11 +78,6 @@ class Student
         }
     }
 
-    public function showMyself()
-    {
-        return (print_r($this));
-    }
-
     public function studyTime(float $studyTime)
     {
         $this->gpa += log($studyTime);
@@ -57,56 +88,54 @@ class Student
     }
 }
 
+$studentsData = [
+    [
+        'name' => 'Mike',
+        'surname' => 'Barnes',
+        'sex' => 'male',
+        'status' => 'freshman',
+        'gpa' => 4
+    ],
+    [
+        'name' => 'Jim',
+        'surname' => 'Nickerson',
+        'sex' => 'male',
+        'status' => 'sophomore',
+        'gpa' => 3
+    ],
+    [
+        'name' => 'Jack',
+        'surname' => 'Indabox',
+        'sex' => 'male',
+        'status' => 'junior',
+        'gpa' => 2.5
+    ],
+    [
+        'name' => 'Jane',
+        'surname' => 'Miller',
+        'sex' => 'female',
+        'status' => 'senior',
+        'gpa' => 3.6
+    ],
+    [
+        'name' => '',
+        'surname' => 'Scott',
+        'sex' => 'female',
+        'status' => 'senior',
+        'gpa' => 2.7
+    ]
+];
+
 $studentList = [];
 
-for ($i = 0; $i < 5; $i++) {
-    $studentList[] = new Student();
-}
-
-$studentList[0]->name = 'Mike';
-$studentList[0]->surname = 'Barnes';
-$studentList[0]->setSex('male');
-$studentList[0]->setStatus('freshman');
-$studentList[0]->setGpa(4);
-
-
-$studentList[1]->name = 'Jim';
-$studentList[1]->surname = 'Nickerson';
-$studentList[1]->setSex('male');
-$studentList[1]->setStatus('sophomore');
-$studentList[1]->setGpa(3);
-
-
-$studentList[2]->name = 'Jack';
-$studentList[2]->surname = 'Indabox';
-$studentList[2]->setSex('male');
-$studentList[2]->setStatus('junior');
-$studentList[2]->setGpa(2.5);
-
-
-$studentList[3]->name = 'Jane';
-$studentList[3]->surname = 'Miller';
-$studentList[3]->setSex('female');
-$studentList[3]->setStatus('senior');
-$studentList[3]->setGpa(3.6);
-
-
-$studentList[4]->name = 'Mary';
-$studentList[4]->surname = 'Scott';
-$studentList[4]->setSex('female');
-$studentList[4]->setStatus('senior');
-$studentList[4]->setGpa(2.7);
-
-for ($i = 0; $i < 5; $i++) {
-    $studentList[$i]->showMyself();
+for ($i = 0; $i < count($studentsData); $i++) {
+    $studentList[] = new Student($studentsData[$i]);
+    echo $studentList[$i] . PHP_EOL;
 }
 
 $studyTime = [60, 100, 40, 300, 1000];
 
-for ($i = 0; $i < 5; $i++) {
+for ($i = 0; $i < count($studentList); $i++) {
     $studentList[$i]->studyTime($studyTime[$i]);
-}
-
-for ($i = 0; $i < 5; $i++) {
-    $studentList[$i]->showMyself();
+    echo $studentList[$i] . PHP_EOL;
 }
