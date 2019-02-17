@@ -100,3 +100,13 @@ $studentList[4]->setGpa(2.7);
 for ($i = 0; $i < 5; $i++) {
     $studentList[$i]->showMyself();
 }
+
+$studyTime = [60, 100, 40, 300, 1000];
+
+for ($i = 0; $i < 5; $i++) {
+    $studentList[$i]->studyTime($studyTime[$i]);
+}
+
+for ($i = 0; $i < 5; $i++) {
+    $studentList[$i]->showMyself();
+}
