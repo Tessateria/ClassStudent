@@ -56,3 +56,47 @@ class Student
         return $this->gpa;
     }
 }
+
+$studentList = [];
+
+for ($i = 0; $i < 5; $i++) {
+    $studentList[] = new Student();
+}
+
+$studentList[0]->name = 'Mike';
+$studentList[0]->surname = 'Barnes';
+$studentList[0]->setSex('male');
+$studentList[0]->setStatus('freshman');
+$studentList[0]->setGpa(4);
+
+
+$studentList[1]->name = 'Jim';
+$studentList[1]->surname = 'Nickerson';
+$studentList[1]->setSex('male');
+$studentList[1]->setStatus('sophomore');
+$studentList[1]->setGpa(3);
+
+
+$studentList[2]->name = 'Jack';
+$studentList[2]->surname = 'Indabox';
+$studentList[2]->setSex('male');
+$studentList[2]->setStatus('junior');
+$studentList[2]->setGpa(2.5);
+
+
+$studentList[3]->name = 'Jane';
+$studentList[3]->surname = 'Miller';
+$studentList[3]->setSex('female');
+$studentList[3]->setStatus('senior');
+$studentList[3]->setGpa(3.6);
+
+
+$studentList[4]->name = 'Mary';
+$studentList[4]->surname = 'Scott';
+$studentList[4]->setSex('female');
+$studentList[4]->setStatus('senior');
+$studentList[4]->setGpa(2.7);
+
+for ($i = 0; $i < 5; $i++) {
+    $studentList[$i]->showMyself();
+}
